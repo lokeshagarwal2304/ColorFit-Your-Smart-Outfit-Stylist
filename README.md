@@ -11,6 +11,7 @@
 ## 🌈 What is **ColorFit**?
 
 > 🎯 A sleek and stylish HTML/CSS/JS web app that lets users upload outfits, extract color palettes, match fashion themes, plan outfits, save favorites, and even chat with a stylist bot. All in one browser-based experience.
+![image](https://github.com/user-attachments/assets/1779c6a8-216b-4120-9df6-44a298c2a733)
 
 ---
 
