@@ -1,278 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ColorFit - Smart Outfit Stylist</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    header {
-      background-color: #ff6f61;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    #modeToggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: white;
-    }
-
-    main {
-      padding: 1.5rem;
-    }
-
-    .upload-section {
-      margin-bottom: 2rem;
-    }
-
-    #imageInput {
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    #previewCanvas {
-      max-width: 100%;
-      border: 1px solid #ccc;
-    }
-
-    #colorResult, #suggestions {
-      margin-top: 2rem;
-    }
-
-    #colorsDisplay {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .colorBox {
-      width: 50px;
-      height: 50px;
-      border-radius: 6px;
-      border: 1px solid #333;
-    }
-
-    #outfitSuggestions {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .suggestionCard {
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      flex: 1 1 200px;
-    }
-
-    #chatBotToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    #chatBotBox {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 300px;
-      max-height: 400px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    #chatHeader {
-      background-color: #ff6f61;
-      color: white;
-      padding: 0.5rem;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    #chatLog {
-      flex: 1;
-      padding: 0.5rem;
-      overflow-y: auto;
-      font-size: 0.9rem;
-    }
-
-    #chatInput {
-      padding: 0.5rem;
-      border: none;
-      border-top: 1px solid #ccc;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .dark {
-      background-color: #111;
-      color: #eee;
-    }
-
-    .dark header {
-      background-color: #222;
-    }
-
-    .dark #chatBotBox {
-      background-color: #333;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorFit - Smart Outfit Stylist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>👗 ColorFit – Your Smart Outfit Stylist</h1>
-    <button id="modeToggle">🌞</button>
-  </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tshirt"></i>
+                <span>ColorFit</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#wardrobe" class="nav-link">Wardrobe</a>
+                <a href="#planner" class="nav-link">Planner</a>
+                <a href="#quiz" class="nav-link">Style Quiz</a>
+            </div>
+            <div class="nav-controls">
+                <button id="voiceBtn" class="voice-btn" title="Voice Commands">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-  <main>
-    <section class="upload-section">
-      <input type="file" id="imageInput" accept="image/*" />
-      <canvas id="previewCanvas" width="300" height="300"></canvas>
-    </section>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Your Smart Fashion Assistant</h1>
+                <p>Upload your outfit and discover perfect color combinations</p>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search styles, colors, occasions...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
 
-    <section id="colorResult">
-      <h2>🎨 Detected Colors</h2>
-      <div id="colorsDisplay"></div>
-    </section>
+                <!-- Image Upload -->
+                <div class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drop your outfit image here or click to browse</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                    </div>
+                    <canvas id="colorCanvas" hidden></canvas>
+                </div>
 
-    <section id="suggestions">
-      <h2>🧠 Smart Outfit Suggestions</h2>
-      <div id="outfitSuggestions"></div>
-    </section>
-  </main>
+                <!-- Color Analysis Results -->
+                <div class="color-analysis" id="colorAnalysis" style="display: none;">
+                    <h3>Extracted Colors</h3>
+                    <div class="color-palette" id="colorPalette"></div>
+                    <button id="getSuggestions" class="btn-primary">Get Style Suggestions</button>
+                </div>
 
-  <button id="chatBotToggle">💬</button>
-  <div id="chatBotBox" class="hidden">
-    <div id="chatHeader">StyleGPT</div>
-    <div id="chatLog"></div>
-    <input type="text" id="chatInput" placeholder="Ask for outfit advice..." />
-  </div>
+                <!-- Trending Tags -->
+                <div class="trending-section">
+                    <h3>Trending Styles</h3>
+                    <div class="tag-cloud">
+                        <span class="tag" data-category="ethnic">#Ethnic</span>
+                        <span class="tag" data-category="summer">#SummerWear</span>
+                        <span class="tag" data-category="minimalist">#Minimalist</span>
+                        <span class="tag" data-category="formal">#Formal</span>
+                        <span class="tag" data-category="casual">#Casual</span>
+                        <span class="tag" data-category="vintage">#Vintage</span>
+                        <span class="tag" data-category="boho">#Boho</span>
+                        <span class="tag" data-category="street">#StreetStyle</span>
+                    </div>
+                </div>
+            </div>
 
-  <script>
-    // Toggle Day/Night Mode
-    const modeToggle = document.getElementById('modeToggle');
-    modeToggle.onclick = () => {
-      document.body.classList.toggle('dark');
-      modeToggle.textContent = document.body.classList.contains('dark') ? '🌙' : '🌞';
-    };
+            <!-- Suggestions Grid -->
+            <div class="suggestions-grid" id="suggestionsGrid" style="display: none;">
+                <h2>Perfect Matches for You</h2>
+                <div class="suggestions-container" id="suggestionsContainer"></div>
+            </div>
 
-    // Image Color Extraction
-    const imageInput = document.getElementById('imageInput');
-    const canvas = document.getElementById('previewCanvas');
-    const ctx = canvas.getContext('2d');
-    const colorsDisplay = document.getElementById('colorsDisplay');
+            <!-- Virtual Silhouette -->
+            <div class="silhouette-preview" id="silhouettePreview" style="display: none;">
+                <h3>Virtual Try-On</h3>
+                <div class="silhouette-container">
+                    <div class="silhouette">
+                        <div class="silhouette-body"></div>
+                        <div class="outfit-overlay" id="outfitOverlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    imageInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (!file) return;
+        <!-- Wardrobe Section -->
+        <section id="wardrobe" class="section">
+            <div class="wardrobe-header">
+                <h2>My Wardrobe</h2>
+                <button id="clearWardrobe" class="btn-secondary">Clear All</button>
+            </div>
+            <div class="wardrobe-grid" id="wardrobeGrid">
+                <div class="empty-wardrobe">
+                    <i class="fas fa-tshirt"></i>
+                    <p>Your saved outfits will appear here</p>
+                </div>
+            </div>
+        </section>
 
-      const img = new Image();
-      img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
+        <!-- Planner Section -->
+        <section id="planner" class="section">
+            <div class="planner-header">
+                <h2>Outfit Planner</h2>
+                <div class="planner-controls">
+                    <button id="prevWeek" class="btn-icon"><i class="fas fa-chevron-left"></i></button>
+                    <span id="currentWeek">This Week</span>
+                    <button id="nextWeek" class="btn-icon"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </section>
 
-        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const colorCounts = {};
-        const data = imgData.data;
+        <!-- Style Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="quiz-container">
+                <h2>Discover Your Style</h2>
+                <div class="quiz-content" id="quizContent">
+                    <div class="quiz-question">
+                        <h3>What's your ideal weekend outfit?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-style="casual">Jeans and a comfy tee</button>
+                            <button class="quiz-option" data-style="boho">Flowy dress with accessories</button>
+                            <button class="quiz-option" data-style="minimalist">Simple, clean lines</button>
+                            <button class="quiz-option" data-style="street">Edgy, trendy pieces</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-result" id="quizResult" style="display: none;">
+                    <h3>Your Style Profile</h3>
+                    <div class="style-result"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        for (let i = 0; i < data.length; i += 4 * 100) {  // Skip pixels for performance
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          const color = `rgb(${r},${g},${b})`;
-          colorCounts[color] = (colorCounts[color] || 0) + 1;
-        }
+    <!-- Chat Assistant -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <div class="chat-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-info">
+                <h4>StyleBot</h4>
+                <span class="chat-status">Online</span>
+            </div>
+            <button id="closeChatBtn" class="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hi! I'm your personal style assistant. How can I help you today?
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Ask me about fashion, colors, or styling tips...">
+            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
 
-        const topColors = Object.entries(colorCounts)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 5);
+    <!-- Floating Chat Button -->
+    <button id="chatToggle" class="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
 
-        colorsDisplay.innerHTML = '';
-        topColors.forEach(([color]) => {
-          const div = document.createElement('div');
-          div.className = 'colorBox';
-          div.style.backgroundColor = color;
-          colorsDisplay.appendChild(div);
-        });
-      };
-      img.src = URL.createObjectURL(file);
-    });
+    <!-- Voice Command Indicator -->
+    <div class="voice-indicator" id="voiceIndicator" style="display: none;">
+        <div class="voice-animation"></div>
+        <p>Listening...</p>
+    </div>
 
-    // Chatbot Toggle
-    const chatToggle = document.getElementById('chatBotToggle');
-    const chatBox = document.getElementById('chatBotBox');
-    chatToggle.onclick = () => {
-      chatBox.classList.toggle('hidden');
-    };
-
-    // Basic Chat Logic
-    const chatInput = document.getElementById('chatInput');
-    const chatLog = document.getElementById('chatLog');
-
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const userMsg = chatInput.value;
-        if (userMsg.trim() === '') return;
-        appendMessage('You', userMsg);
-        respond(userMsg);
-        chatInput.value = '';
-      }
-    });
-
-    function appendMessage(sender, message) {
-      const msg = document.createElement('div');
-      msg.textContent = `${sender}: ${message}`;
-      chatLog.appendChild(msg);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
-
-    function respond(input) {
-      let response = "Try pairing bold colors with neutrals!";
-      if (input.toLowerCase().includes('wedding')) {
-        response = "Go for traditional ethnic wear or elegant pastels!";
-      } else if (input.toLowerCase().includes('interview')) {
-        response = "Formal shades like navy blue, grey, and white are best.";
-      }
-      appendMessage('StyleGPT', response);
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
