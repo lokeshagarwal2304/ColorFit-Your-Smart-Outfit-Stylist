@@ -1,0 +1,987 @@
+/* Enhanced styles for the database-integrated ColorFit application */
+
+/* Global loader */
+.global-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loader-content {
+  background: var(--surface-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Notifications */
+.notification {
+  position: fixed;
+  top: 80px;
+  right: 2rem;
+  background: var(--surface-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  border-left: 4px solid var(--primary-color);
+  animation: slideInRight 0.3s ease;
+}
+
+.notification.success {
+  border-left-color: #10b981;
+}
+
+.notification.error {
+  border-left-color: #ef4444;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: var(--text-primary);
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Enhanced preference controls */
+.preference-controls {
+  background: var(--surface-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+}
+
+.preference-item {
+  margin-bottom: 1.5rem;
+}
+
+.preference-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.preference-item select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--background-color);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.preference-item select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.brand-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.brand-checkboxes input[type="checkbox"] {
+  accent-color: var(--primary-color);
+}
+
+/* Enhanced color analysis */
+.color-analysis {
+  background: var(--surface-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+}
+
+.analysis-info {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.analysis-info p {
+  margin: 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.color-matches {
+  margin-top: 2rem;
+}
+
+.color-match-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 0.5rem;
+}
+
+.original-color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: var(--shadow);
+}
+
+.match-colors {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.complementary,
+.analogous {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.complementary:hover,
+.analogous:hover {
+  transform: scale(1.2);
+}
+
+/* Enhanced suggestion cards */
+.suggestion-card.enhanced {
+  background: var(--surface-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.suggestion-card.enhanced:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.suggestion-badges {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trending-badge,
+.match-badge {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.trending-badge {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+}
+
+.match-badge {
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+}
+
+.suggestion-details {
+  margin: 1rem 0;
+}
+
+.suggestion-tags {
+  margin: 0.5rem 0;
+}
+
+.style-tag {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.suggestion-info {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.brand-suggestions {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 0.5rem;
+}
+
+.brand-suggestions h5 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.brand-products {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.brand-product {
+  min-width: 100px;
+  text-align: center;
+}
+
+.brand-product img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-name {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.product-price {
+  display: block;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+/* Weather recommendations */
+.weather-recommendations {
+  background: var(--surface-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+}
+
+.weather-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.weather-current {
+  text-align: center;
+  padding: 1rem;
+  background: var(--gradient);
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.temperature {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.condition {
+  text-transform: capitalize;
+  opacity: 0.9;
+}
+
+.weather-tips h5 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.weather-tips ul {
+  list-style: none;
+  padding: 0;
+}
+
+.weather-tips li {
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+}
+
+.weather-tips li::before {
+  content: "☀️";
+  margin-right: 0.5rem;
+}
+
+.weather-outfits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.weather-outfit-card {
+  background: var(--background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.weather-outfit-card:hover {
+  transform: translateY(-2px);
+}
+
+.weather-outfit-card i {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Trending colors */
+.trending-colors {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.trending-colors h4 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.trending-color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.trending-color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.trending-color:hover {
+  transform: scale(1.1);
+}
+
+.trending-color::after {
+  content: "🔥";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 0.8rem;
+}
+
+.tag.trending {
+  animation: pulse 2s infinite;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+}
+
+/* Enhanced chat */
+.typing-indicator .message-content {
+  padding: 1rem;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.typing-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* AI Advice Modal */
+.ai-advice-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.ai-advice-modal .modal-content {
+  background: var(--surface-color);
+  border-radius: 1rem;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 2rem;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.outfit-context {
+  background: var(--background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ai-recommendation,
+.color-suggestions,
+.style-tips,
+.outfit-combinations {
+  margin-bottom: 1.5rem;
+}
+
+.ai-recommendation h5,
+.color-suggestions h5,
+.style-tips h5,
+.outfit-combinations h5 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.combo-item {
+  background: var(--background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.confidence-score {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 0.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Social Feed */
+.social-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.social-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feed-item {
+  background: var(--surface-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.feed-item:hover {
+  transform: translateY(-2px);
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.user-info h4 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.share-time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.feed-content {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.outfit-preview {
+  width: 80px;
+  height: 80px;
+  background: var(--gradient);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.outfit-details h5 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.outfit-colors {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: var(--shadow);
+}
+
+.feed-actions {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.feed-action {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feed-action:hover {
+  background: var(--border-color);
+  color: var(--primary-color);
+}
+
+.empty-feed {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+.empty-feed i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Enhanced wardrobe */
+.wardrobe-item.enhanced {
+  background: var(--surface-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.wardrobe-item.enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.wardrobe-image {
+  height: 120px;
+  background: var(--gradient);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.wardrobe-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.wardrobe-details {
+  margin: 1rem 0;
+}
+
+.wardrobe-tags {
+  margin: 0.5rem 0;
+}
+
+.wardrobe-info {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.wardrobe-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Planning Modal */
+.planning-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.planning-modal .modal-content {
+  background: var(--surface-color);
+  border-radius: 1rem;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 2rem;
+}
+
+.outfit-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.outfit-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.outfit-option:hover {
+  border-color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.outfit-option .outfit-preview {
+  width: 60px;
+  height: 60px;
+  background: var(--gradient);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.outfit-info h5 {
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.outfit-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Enhanced calendar */
+.calendar-day {
+  background: var(--surface-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-day:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.calendar-day.has-outfit {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--primary-color);
+}
+
+.planned-outfit {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.planned-outfit .outfit-preview {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.outfit-title {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-align: center;
+}
+
+.add-outfit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border: 2px dashed var(--border-color);
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.calendar-day:hover .add-outfit {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  .preference-controls {
+    padding: 1rem;
+  }
+
+  .weather-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .brand-products {
+    gap: 0.5rem;
+  }
+
+  .brand-product {
+    min-width: 80px;
+  }
+
+  .brand-product img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .suggestion-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feed-content {
+    flex-direction: column;
+  }
+
+  .outfit-preview {
+    width: 100%;
+    height: 60px;
+  }
+
+  .ai-advice-modal .modal-content {
+    margin: 1rem;
+    max-height: 90vh;
+  }
+
+  .planning-modal .modal-content {
+    margin: 1rem;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .preference-controls {
+    padding: 1rem 0.5rem;
+  }
+
+  .brand-checkboxes {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .weather-outfits {
+    grid-template-columns: 1fr;
+  }
+
+  .trending-color-palette {
+    gap: 0.5rem;
+  }
+
+  .trending-color {
+    width: 40px;
+    height: 40px;
+  }
+
+  .suggestion-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .wardrobe-actions {
+    flex-direction: column;
+  }
+
+  .feed-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
