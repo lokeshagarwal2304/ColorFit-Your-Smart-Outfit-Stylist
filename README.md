@@ -42,7 +42,7 @@
 
 ---
 
-## 📊 Stylometer Gauge (✨ NEW & FUN)
+## 📊 Stylometer Gauge (✨ NEW & FUN):
 
 ```
 🧪 Here's how ColorFit scores in creative UI metrics:
