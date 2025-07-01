@@ -79,7 +79,7 @@
 
 ---
 
-## 🌐 Run It Yourself
+## 🌐 Run It Yourself(Update Soon)
 
 ```bash
 git clone https://github.com/lokeshagarwal2304/colorfit.git
